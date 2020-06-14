@@ -3,9 +3,13 @@ from random import randint
 import os
 
 zero = False
-g = open("main_data.txt", "r")
-text = g.read()
-g.close()
+try:
+	g = open("main_data.txt", "r")
+	text = g.read()
+	g.close()
+except IOError:
+	print("File does not exist, make main_data.txt file first or input text below.\n")
+	text = input('Enter the text you want to convert:\n \n')
 crypt = ''
 
 
@@ -45,5 +49,7 @@ with open('pass.txt', 'w') as f:
 		f.write('\n')
 		f.write('0')
 f.close()
-
-os.remove('main_data.txt')
+try:
+	os.remove('main_data.txt')
+except IOError:
+	pass
